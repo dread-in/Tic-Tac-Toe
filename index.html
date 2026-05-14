@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hand-Drawn Tic Tac Toe</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Tic Tac Toe</h1>
+<div class="controls">
+    <button id="btn-2p" class="active" onclick="setMode('2p')">2 Players</button>
+    <button id="btn-bot" onclick="setMode('bot')">vs Bot</button>
+</div>
+<div class="status-container">
+    <span id="status">Player X's Turn</span>
+</div>
+<div class="board-container">
+    <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+    <div class="h-lines"></div>
+    <div id="strike-line" class="strike-line"></div>
+</div>
+<div class="actions">
+    <button class="reset-btn" onclick="resetGame()">Start Over</button>
+</div>
+<div id="game-over-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 id="modal-msg" class="modal-title">X Wins!</h2>
+        <button onclick="closeModalAndReset()" style="margin-top: 1rem;">Play Again</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
