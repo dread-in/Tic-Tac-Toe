@@ -14,9 +14,8 @@ A fully playable, lightweight Tic-Tac-Toe game featuring a nostalgic, sketchy do
 - [Live Demo](#-live-demo)
 - [Features](#-features)
 - [How to Play](#-how-to-play)
-- [Tech Stack](#-tech-stack)
+- [🧠 How It Works (Under the Hood)](#-how-it-works-under-the-hood)
 - [Installation & Setup](#-installation--setup)
-- [Future Updates / Roadmap](#-future-updates--roadmap)
 - [Author](#-author)
 
 ---
@@ -48,13 +47,12 @@ You can play the game directly in your browser without downloading anything!
 *   **Versatile Game Modes:**
     *   👥 **2-Player Mode:** Play locally with a friend sharing the same screen.
     *   🤖 **Bot Mode:** Test your skills against an automated computer opponent.
-*   **Responsive Design:** Scales perfectly on desktop, tablet, and mobile browsers.
 
 ---
 
 ## 🎮 How to Play
 
-1. Open the game.
+1. Open the game in any web browser.
 2. Select your preferred mode (Play vs Friend or Play vs Bot).
 3. The first player (X) clicks on any empty square to make a move.
 4. Players take turns placing their marks (X and O) in empty squares.
@@ -63,13 +61,27 @@ You can play the game directly in your browser without downloading anything!
 
 ---
 
-## 🛠️ Tech Stack
+## 🧠 How It Works (Under the Hood)
 
-This project is built purely with native web technologies. **No dependencies, no libraries, no frameworks.**
+Because this game is built entirely in a single file without external libraries, the code relies heavily on core web fundamentals. Here is a breakdown of how the game functions behind the scenes:
 
-*   **HTML5:** Semantic document structure.
-*   **CSS3:** Flexbox layouts, responsive design, and custom pseudo-elements to create the hand-drawn visual effects.
-*   **Vanilla JavaScript (ES6+):** Event listeners, array manipulations for win-checking, game state tracking, and artificial intelligence for the bot logic.
+### 1. HTML (The Structure)
+The DOM is extremely lightweight. The core elements include:
+*   A **Grid Container** that holds 9 individual `<div class="cell">` elements. Each cell represents a square on the Tic-Tac-Toe board.
+*   **UI Menus** for selecting the game mode (Bot vs. 2-Player) and a "Game Over" screen that overlays the board when someone wins or ties.
+
+### 2. CSS (The Hand-Drawn Aesthetic)
+The "doodle" look is achieved purely through CSS styling:
+*   **Grid Lines:** Instead of perfectly straight borders, the grid uses slightly varied border radiuses and box-shadows to simulate uneven, hand-drawn pencil strokes.
+*   **Marker Colors:** Player 'X' and Player 'O' are dynamically assigned different CSS classes when a cell is clicked, which triggers distinct colors (red vs. blue) and custom sketchy fonts to separate them visually from the grid.
+
+### 3. JavaScript (The Game Logic)
+All interactivity and game rules are handled by a Vanilla JavaScript `<script>` block at the bottom of the file.
+
+*   **State Management:** The current state of the board is tracked using a simple 9-item Array (e.g., `['X', '', 'O', '', '', '', '', '', '']`). A variable keeps track of the `currentPlayer` (switching between 'X' and 'O' after every valid turn).
+*   **Win Detection:** After every single move, the code checks the board array against all **8 possible winning combinations** (3 horizontal, 3 vertical, 2 diagonal). If the current player's marks occupy all three indices of any winning combination, the game triggers a win state.
+*   **Draw Detection:** If no win is detected, the code checks if the board array contains any empty slots. If the array is full and there is no winner, a tie is declared.
+*   **Bot AI Logic:** When playing against the bot, the logic automatically runs after the human player's turn. It filters the board array to find all remaining empty indices, selects one, places the 'O' marker there, and updates the board array before handing control back to the human player.
 
 ---
 
